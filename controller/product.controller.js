@@ -15,6 +15,18 @@ import { productModel } from "../model/product.model.js";
 
 } 
 
+const getProduct = async (req,res) => {
+
+    try {
+        let {category} = req.params
+        let product = await productModel.find({category})
+        res.status(200).send({status: true, result : product})
+    } catch (error) {
+        res.status(400).send(error)
+    }
+}
+
 export {
-    create_Product
+    create_Product,
+    getProduct
 }

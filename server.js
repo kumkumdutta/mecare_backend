@@ -8,7 +8,11 @@ dotenv.config()
 const Fastify = fastify({
     logger :true
 })
-Fastify.register(productRoutes)
+
+Fastify.register(productRoutes, { prefix: '/mecare' });
+
+
+
 
 Fastify.listen({port:process.env.Port},async()=>{
     try {
