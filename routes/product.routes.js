@@ -1,9 +1,11 @@
 import * as product_controller from '../controller/product.controller.js'
-import * as auth_controller from '../controller/auth.controller.js'
+import { authenticate } from '../middleware/auth.middleware.js'
 
 export default async function (fastify){
+    fastify.addHook('preHandler', authenticate)
     fastify.post('/add_product',product_controller.create_Product )
-    fastify.post('/register', auth_controller.register)
-    fastify.post('/login', auth_controller.login)
-    fastify.get('/get_product/:category',product_controller.getProduct)
+    fastify.get('/get_product_by_category/:category',product_controller.getProductbyCategory)
+    fastify.get('/search_by_product_name',product_controller.searchByProductName)
+    fastify.post('/add_to_cart',product_controller.add_to_cart)
+    fastify.post('/add_to_wishlist',product_controller.add_to_wishlist)
 }

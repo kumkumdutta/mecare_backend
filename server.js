@@ -1,7 +1,8 @@
 import fastify from "fastify";
 import dotenv from "dotenv";
 import { connection } from "./config/db.js";
-import * as productRoutes from './routes/product.routes.js'
+import * as productRoutes from './routes/product.routes.js';
+import * as authRoutes from './routes/auth.routes.js';
 
 dotenv.config()
 
@@ -10,6 +11,7 @@ const Fastify = fastify({
 })
 
 Fastify.register(productRoutes, { prefix: '/mecare' });
+Fastify.register(authRoutes, { prefix: '/mecare/auth' });
 
 
 
