@@ -16,7 +16,7 @@ Fastify.register(authRoutes, { prefix: '/mecare/auth' });
 
 
 
-Fastify.listen({port:process.env.Port},async()=>{
+Fastify.listen({port:process.env.Port, host:"0.0.0.0"},async()=>{
     try {
         await connection
         console.log("databse connected successfully")
